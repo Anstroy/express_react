@@ -7,11 +7,15 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Footer from "./components/Footer"
 
 function App() {
+  const style = {
+    "min-height": "100vh",
+  }
+
   return (
     <Router>
-      <div className="App">
+      <div className="App relative" style={style}>
         <Nav />
-        <div className="min-h-screen">
+        <div>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/search" component={Search} />

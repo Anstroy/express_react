@@ -5,7 +5,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: "Harry Potter",
+      value: "",
       books: [],
     }
 
@@ -23,15 +23,19 @@ class Search extends React.Component {
   }
 
   fetchBooks = async () => {
-    const data = await fetch(
-      `https://www.googleapis.com/books/v1/volumes?q=${
-        this.state.value
-      }&key=${"AIzaSyAYeIrbfE6DDlKyaoiBQQS2_IlW1fbz9vk"}`
-    )
-    const { items } = await data.json()
-    console.log(items)
+    if (this.state.value.length > 0) {
+      const data = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${
+          this.state.value
+        }&key=${"AIzaSyAYeIrbfE6DDlKyaoiBQQS2_IlW1fbz9vk"}`
+      )
+      const { items } = await data.json()
+      console.log(items)
 
-    this.setState({ books: items })
+      this.setState({ books: items })
+    } else {
+      alert("Please type something")
+    }
   }
 
   addBookToDB = async ({ volumeInfo: book }, id) => {
@@ -90,10 +94,10 @@ class Search extends React.Component {
         <div className="my-4 text-white font-bold">
           <ul>
             {this.state.books.map((item, i) => (
-              <li className="bg-gray-600 rounded my-2 py-2" key={i}>
+              <li className="bg-gray-600 rounded my-2 py-2 relative" key={i}>
                 {item.volumeInfo.title}
                 <button
-                  className="m-1 p-1 bg-blue-300 text-white font-bold"
+                  className="rounded-full p-1 bg-blue-300 text-white font-bold absolute right-0 hover:bg-blue-700"
                   onClick={() => this.addBookToDB(item, item.id)}
                 >
                   Add

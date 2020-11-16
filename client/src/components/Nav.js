@@ -9,7 +9,7 @@ function Nav() {
 
   return (
     <nav>
-      <h3>Logo</h3>
+      <h3>🔥 React + Express</h3>
       <ul className="nav-links">
         <Link to="/search" style={navStyle}>
           <li>Search</li>
