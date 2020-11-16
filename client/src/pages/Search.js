@@ -49,7 +49,7 @@ class Search extends React.Component {
 
     console.log(bookInfo)
 
-    const response = await fetch("http://localhost:3001/api/books", {
+    await fetch(`${process.env.SERVER_URL || ""}/api/books`, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -62,12 +62,14 @@ class Search extends React.Component {
       referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
       body: JSON.stringify(bookInfo), // body data type must match "Content-Type" header
     })
+      .then((response) => {
+        alert(`Book ${bookInfo.title} Added to the DB!`)
 
-    alert(`Book ${bookInfo.title} Added to the DB!`)
+        this.setState({ books: this.state.books.filter((b) => b.id != id) })
 
-    this.setState({ books: this.state.books.filter((b) => b.id != id) })
-
-    console.log(response.json())
+        console.log(response.json())
+      })
+      .catch((err) => alert("something when wrong"))
   }
 
   render() {

@@ -20,7 +20,7 @@ function Saved() {
     if (window.confirm("Are you sure you want to remove this book from your list?") === true) {
       console.log("Removing Book from dB")
 
-      await fetch(`http://localhost:3001/api/books/${book._id}`, {
+      await fetch(`${process.env.SERVER_URL || ""}/api/books/${book._id}`, {
         method: "DELETE",
       }).then(() => {
         setBooks(books.filter((b) => b._id !== book._id))
