@@ -2,9 +2,18 @@ const express = require("express")
 const path = require("path")
 const PORT = process.env.PORT || 3001
 const app = express()
+const cors = require("cors")
 const bookRoutes = require("./routes/books.route")
 const mongoose = require("mongoose")
 require("dotenv").config()
+
+// CORS
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+app.use(cors(corsOptions))
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }))

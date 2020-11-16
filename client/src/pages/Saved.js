@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import "./App.css"
+import "../App.css"
 
-function Shop() {
+function Saved() {
   useEffect(() => {
     fetchItems()
   }, [])
@@ -18,6 +18,7 @@ function Shop() {
 
   return (
     <div>
+      <h1>Saved</h1>
       {items.map((item, i) => (
         <h1 key={i}>{item}</h1>
       ))}
@@ -25,4 +26,4 @@ function Shop() {
   )
 }
 
-export default Shop
+export default Saved
