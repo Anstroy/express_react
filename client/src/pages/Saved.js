@@ -9,7 +9,7 @@ function Saved() {
   const [books, setBooks] = useState([])
 
   const fetchItems = async () => {
-    const data = await fetch("http://localhost:3001/api/books")
+    const data = await fetch(`${process.env.SERVER_URL || ""}/api/books`)
     const { books } = await data.json()
     console.log(books)
 
