@@ -7,7 +7,9 @@ function Footer() {
   }
 
   return (
-    <div className="bg-gray-900 text-white py-3 absolute w-full bottom-0">React App running on a Express Server</div>
+    <div className="bg-gray-900 text-white py-3 absolute w-full bottom-0 hidden">
+      React App running on a Express Server
+    </div>
   )
 }
 

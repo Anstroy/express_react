@@ -35,7 +35,9 @@ function Saved() {
         <ul>
           {books.map((book, i) => (
             <li className="bg-gray-600 rounded my-2 py-4 relative" key={i}>
-              {book.title}
+              <a className="hover:text-gray-900 underline" href={book.link}>
+                {book.title}
+              </a>
               <button
                 className="p-1 bg-red-600 text-white font-bold absolute right-0 hover:bg-red-900"
                 onClick={() => removeBookFromDB(book)}

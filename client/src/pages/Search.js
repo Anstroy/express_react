@@ -96,10 +96,22 @@ class Search extends React.Component {
         <div className="my-4 text-white font-bold">
           <ul>
             {this.state.books.map((item, i) => (
-              <li className="bg-gray-600 rounded my-2 py-2 relative" key={i}>
-                {item.volumeInfo.title}
+              <li
+                className="bg-gray-600 rounded my-2 py-2 relative flex justify-center justify-between items-center"
+                key={i}
+              >
+                <img src={item.volumeInfo.imageLinks.thumbnail} className="h-20 ml-5" />
+                <div className="w-1/2">
+                  <a
+                    className="hover:text-gray-900 hover:underline font-bold text-2xl cursor-pointer"
+                    href={item.volumeInfo.previewLink}
+                  >
+                    {item.volumeInfo.title}
+                  </a>
+                  <p className="text-xs text-black">{item.volumeInfo.description}</p>
+                </div>
                 <button
-                  className="rounded-full p-1 bg-blue-300 text-white font-bold absolute right-0 hover:bg-blue-700"
+                  className="rounded shadow py-3 px-8 bg-blue-300 text-white font-bold hover:bg-blue-700 mr-5"
                   onClick={() => this.addBookToDB(item, item.id)}
                 >
                   Add
@@ -107,6 +119,7 @@ class Search extends React.Component {
               </li>
             ))}
           </ul>
+          <br />
         </div>
       </div>
     )
